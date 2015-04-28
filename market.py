@@ -10,6 +10,7 @@ class DiningLocation:
 
     def serve_student(self, s):
         self.num_students += 1
+        s.location = self
 
     def serving_time(self):
         return self.base_time + self.num_students
@@ -26,6 +27,15 @@ class Student:
     def __init__(self, index, locations):
         self.index = index
         self.pref_list = random.shuffle(locations)
+        self.location = None
+
+    def happiness(self, m):
+        if self.location is None:
+            return 0
+        if not self.location in self.pref_list:
+            return -1
+        location_index = self.pref_list.index(self.location)
+        return float(m-location_index)/m
 
 m = 10
 n = 100
