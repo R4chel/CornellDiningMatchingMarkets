@@ -24,10 +24,13 @@ class DiningLocation:
 
 class Student:
 
-    def __init__(self, index, locations):
+    def __init__(self, index, locations, incomplete_prefs):
         self.index = index
         self.pref_list = random.shuffle(locations)
         self.location = None
+        if incomplete_prefs:
+            list_size = random.uniform(1, len(locations))
+            self.pref_list = self.pref_list[0:list_size]
 
     def happiness(self, m):
         if self.location is None:
