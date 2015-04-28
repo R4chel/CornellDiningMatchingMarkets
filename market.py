@@ -35,12 +35,12 @@ class Student:
     def happiness(self, m):
         if self.location is None:
             return 0
-        if not self.location in self.pref_list:
+        if self.location not in self.pref_list:
             return -1
         location_index = self.pref_list.index(self.location)
-        return float(m-location_index)/m
+        return float(m - location_index) / m
 
 m = 10
 n = 100
 locations = [DiningLocation(i) for i in range(m)]
-students = [Student(i, locations) for i in range(n)]
+students = [Student(i, locations, False) for i in range(n)]
