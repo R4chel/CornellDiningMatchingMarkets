@@ -40,7 +40,12 @@ class Student:
         location_index = self.pref_list.index(self.location)
         return float(m - location_index) / m
 
+
+class Market:
+    def __init__(self, n, m, incomplete_prefs=False):
+        self.locations = [DiningLocation(i) for i in range(m)]
+        self.students = [Student(i, self.locations, incompete_prefs) for i in range(n)]
+
 m = 10
 n = 100
-locations = [DiningLocation(i) for i in range(m)]
-students = [Student(i, locations, False) for i in range(n)]
+market = Market(n, m)
