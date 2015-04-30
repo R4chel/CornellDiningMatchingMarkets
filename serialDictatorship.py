@@ -20,6 +20,8 @@ def modified_serial_dictatorship(market):
            and n < len(market.locations) - 1):
         still_unserved = []
         for student in unserved_students:
+            if len(student.pref_list) <= n:
+                continue
             next_location = market.locations[student.pref_list[n]]
             if next_location.full():
                 still_unserved.append(student)
