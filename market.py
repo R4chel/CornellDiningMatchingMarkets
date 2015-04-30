@@ -10,12 +10,8 @@ class DiningLocation:
         self.max_time = max_time
 
     def serve_student(self, s):
-        if not self.full():
-            self.num_students += 1
-            s.location = self
-            return True
-        else:
-            return False
+        self.num_students += 1
+        s.location = self
 
     def serving_time(self):
         return self.base_time + self.num_students
