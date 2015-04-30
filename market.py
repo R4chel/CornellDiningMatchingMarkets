@@ -68,7 +68,6 @@ class Market:
                                  self.locations,
                                  incomplete_prefs) for i in range(n)]
         self.max_time = max_time
-m = 10
-n = 100
-max_time = 45
-market = Market(n, m, max_time)
+
+    def students_served(self):
+        return sum([1 for student in self.students if student.location is not None])
