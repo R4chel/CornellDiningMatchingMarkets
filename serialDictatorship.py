@@ -1,6 +1,3 @@
-from market import Market
-
-
 def serial_dictatorship(market):
     for student in market.students:
         for location_index in student.pref_list:
