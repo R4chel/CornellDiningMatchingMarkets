@@ -53,5 +53,11 @@ class Market:
         self.students = [Student(i, self.locations, incomplete_prefs) for i in range(n)]
         self.max_time = max_time
 
+    def reset_market(self):
+        for location in self.locations:
+            location.num_served = 0
+        for student in self.students:
+            student.location = None
+
     def students_served(self):
         return sum([1 for student in self.students if student.location is not None])
