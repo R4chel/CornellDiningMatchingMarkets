@@ -25,27 +25,21 @@ class DiningLocation:
 
 class Student:
 
-    def __init__(self, index, locations, incomplete_prefs):
+    def __init__(self, index, weighted_locations, incomplete_prefs):
         self.index = index
 
-        # Make duplicates of locations, first location in locations list
-        # appears 1 time, last location appears m times
-        multiple_locations = []
-        for location in locations:
-            for i in range(location.index + 1):
-                multiple_locations.append(location.index)
-
         self.pref_list = []
-        while len(multiple_locations) > 0:
-            loc = random.choice(multiple_locations)
+        weighted_locations = list(weighted_locations)
+        while len(weighted_locations) > 0:
+            loc = random.choice(weighted_locations)
             self.pref_list.append(loc)
-            while loc in multiple_locations:
-                multiple_locations.remove(loc)
+            while loc in weighted_locations:
+                weighted_locations.remove(loc)
 
         self.location = None
 
         if incomplete_prefs:
-            list_size = random.choice(range(1, len(locations)))
+            list_size = random.choice(range(1, len(self.pref_list)))
             self.pref_list = self.pref_list[0:list_size]
 
     def happiness(self, m):
@@ -60,9 +54,18 @@ class Student:
 class Market:
     def __init__(self, n, m, max_time, incomplete_prefs=False):
         self.locations = [DiningLocation(i, max_time) for i in range(m)]
+
+        # Make duplicates of locations, first location in locations list
+        # appears 1 time, last location appears m times
+        weighted_locations = []
+        for location in self.locations:
+            for i in range(location.index + 1):
+                weighted_locations.append(location.index)
+
         self.students = [Student(i,
-                                 self.locations,
+                                 weighted_locations,
                                  incomplete_prefs) for i in range(n)]
+
         self.max_time = max_time
 
     def reset(self):
@@ -72,4 +75,5 @@ class Market:
             student.location = None
 
     def students_served(self):
-        return sum([1 for student in self.students if student.location is not None])
+        return sum([1 for student in self.students
+                    if student.location is not None])

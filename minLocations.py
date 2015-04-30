@@ -7,10 +7,12 @@ def minimize_locations(market):
     sorted_locations.reverse()
 
     num_locations = len(sorted_locations)
+    unmatched_students = list(market.students)
     for location in sorted_locations:
         for i in range(num_locations):
-            for student in market.students:
+            for student in unmatched_students:
                 if(not location.full() and student.location is None
                    and len(student.pref_list) > i
                    and student.pref_list[i] == location.index):
                     location.serve_student(student)
+                    unmatched_students.remove(student)
