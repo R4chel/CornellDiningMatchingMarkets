@@ -69,9 +69,9 @@ class Market:
                                  incomplete_prefs) for i in range(n)]
         self.max_time = max_time
 
-    def reset_market(self):
+    def reset(self):
         for location in self.locations:
-            location.num_served = 0
+            location.num_students = 0
         for student in self.students:
             student.location = None
 
