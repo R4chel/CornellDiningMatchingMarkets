@@ -1,4 +1,5 @@
-from market import Market, Student
+from market import Market
+
 
 def serial_dictatorship(market):
     for student in market.students:
