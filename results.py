@@ -30,7 +30,7 @@ def test_market(n, m, t, partial, writer):
     writer.writerow(row)
 
 
-results_file = open('results.csv', 'w+')
+results_file = open('data.csv', 'w+')
 results_writer = csv.writer(results_file)
 header = ["n", "m", "t", "partial", "serial_happy", "serial_percent_served",
           "serial_avg_time", "mod_happy", "mod_percent_served", "mod_avg_time",
@@ -39,7 +39,7 @@ results_writer.writerow(header)
 
 n_vals = range(100, 1000, 100)
 m_vals = range(10, 100, 10)
-t_vals = range(10, 100, 10)
+t_vals = range(20, 100, 10)
 partial_vals = [False, True]
 
 for partial in partial_vals:
