@@ -15,6 +15,8 @@ def total_time(market):
 
 def average_time(market):
     num_served = sum([1 for student in market.students if student.location is not None])
+    if num_served = 0:
+        return 0
     return float(total_time(market))/num_served
 
 
