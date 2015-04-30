@@ -40,14 +40,27 @@ results_writer.writerow(header)
 n_vals = range(100, 1000, 100)
 m_vals = range(10, 100, 10)
 t_vals = range(20, 100, 10)
-partial_vals = [False, True]
+# partial_vals = [False, True]
 
-for partial in partial_vals:
-    for t in t_vals:
-        for n in n_vals:
-            for m in m_vals:
-                print("Testing partial={0} t={1} n={2} m={3}".format(partial,
-                                                                     t, n, m))
-                test_market(n, m, t, partial, results_writer)
+# for partial in partial_vals:
+#     for t in t_vals:
+#         for n in n_vals:
+#             for m in m_vals:
+#                 print("Testing partial={0} t={1} n={2} m={3}".format(partial,
+#                                                                      t, n, m))
+#                 test_market(n, m, t, partial, results_writer)
+
+default_n = 500
+default_m = 15
+default_t = 45
+
+for t in t_vals:
+    test_market(default_n, default_m, t, False, results_writer)
+
+for m in m_vals:
+    test_market(default_n, m, default_t, False, results_writer)
+
+for n in n_vals:
+    test_market(n, default_m, default_t, False, results_writer)
 
 results_file.close()

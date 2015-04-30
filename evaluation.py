@@ -1,6 +1,3 @@
-from market import Market
-
-
 def happy(market):
     m = len(market.locations)
     happy = [student.happiness(m) for student in market.students]
